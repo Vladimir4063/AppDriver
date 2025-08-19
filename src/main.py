@@ -23,7 +23,8 @@ async def main(page: ft.Page):
     async def request_permission(e):
         status = await geolocator.request_permission_async(wait_timeout=30)
         result_text.value = f"Permiso: {status}"
-        await page.update_async()
+        await page.update()
+
 
     # Botón para obtener ubicación actual
     async def get_location(e):
@@ -34,7 +35,8 @@ async def main(page: ft.Page):
             position = await geolocator.get_current_position_async()
             lat, lon = position.latitude, position.longitude
             result_text.value = f"Latitud: {lat}\nLongitud: {lon}\n\n📍 https://maps.google.com/?q={lat},{lon}"
-        await page.update_async()
+        await page.update()
+
 
     # UI
     page.add(
